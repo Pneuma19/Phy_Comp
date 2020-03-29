@@ -4,10 +4,10 @@ import numpy as np
 
 
 
-#Creating a Blackbody Function
-h = 6.626e-34
-c = 3.0e*8
-k = 1.38e-23
+#Creating a lackbody Function
+h = 6.626*10**-34
+c = 3.0*10**8
+k = 1.38*10**-23
 
 def planck(wav,T):
     a=2.0*h*c**2
