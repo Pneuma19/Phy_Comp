@@ -10,7 +10,7 @@ from astropy.io import fits
 from decimal import Decimal
 
 import norm as nm
-
+import smooth as sm
 
 
 
@@ -34,6 +34,8 @@ wavelength = np.array(data[0][0])
 flux = np.array(data[0][1])
 x = wavelength
 y = flux
+
+
 #Normalizing
 norm_flux = nm.norm(flux)
 
@@ -41,31 +43,13 @@ norm_flux = nm.norm(flux)
 
 
 #Smoothing
-r=int(input("Please enter a r value: "))
-
-alpha=(1.0)/(2.0*r+1.0)
+smooth_wavelength, smooth_flux = sm.smooth(wavelength, flux)
 
 
-new_flux=[]
-new_wavelength=[]
-j=r
-k=r
 
+new_wavelength = smooth_wavelength
+new_flux = smooth_flux
 
-while j<len(flux)-r:
-  t=0
-  t=sum(flux[(j-r):(j+r+1)])
-  new_flux.append(alpha*t)
-  j+=1
-
-while k<len(wavelength)-r:
-  t=0
-  t=sum(wavelength[(k-r):(k+r+1)])
-  new_wavelength.append(alpha*t)
-  k+=1
-
-new_wavelength=np.asarray(new_wavelength)
-new_flux=np.asarray(new_flux)
 
 plt.subplot(1,2,1)
 plt.plot(x,y)
