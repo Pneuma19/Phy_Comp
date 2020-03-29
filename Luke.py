@@ -11,30 +11,15 @@ from decimal import Decimal
 
 import norm as nm
 import smooth as sm
+import readfits as rdf
 
 
-
-# Define the path
-path = "/home/slogle/Astro"
-
-# Tell it where to look for the fits file
-os.chdir(path)
-
-# Give the file a name and define the path
-fif = 'test1.fits'
-
-# Extracting the data from the fits file
-hdul = fits.open(fif)
-hdul.info()
-data = fits.getdata(fif)
-header = fits.getheader(fif)
+#Open and read the fits file
+wavelength, flux = rdf.readfits()
 
 
-wavelength = np.array(data[0][0])
-flux = np.array(data[0][1])
 x = wavelength
 y = flux
-
 
 #Normalizing
 norm_flux = nm.norm(flux)
