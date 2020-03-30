@@ -12,7 +12,7 @@ from decimal import Decimal
 import norm as nm
 import smooth as sm
 import readfits as rdf
-
+import plot as pt
 
 #Open and read the fits file
 wavelength, flux = rdf.readfits()
@@ -28,27 +28,11 @@ norm_flux = nm.norm(flux)
 
 
 #Smoothing
-smooth_wavelength, smooth_flux = sm.smooth(wavelength, flux)
+smooth_wavelength, smooth_flux = sm.smooth(wavelength, norm_flux)
 
 
-
-new_wavelength = smooth_wavelength
-new_flux = smooth_flux
-
-
-plt.subplot(1,2,1)
-plt.plot(x,y)
-plt.title("Raw Wavelength vs Flux")
-plt.xlabel("Wavelength (Ångstroms)")
-plt.ylabel("Flux")
-
-plt.subplot(1,2,2)
-plt.plot(new_wavelength,new_flux)
-plt.title("Normalized/Smoothed Wavelength vs Flux")
-plt.xlabel("Wavelength (Ångstroms)")
-plt.ylabel("Flux")
-plt.show()
-
+#Plotting the data
+pt.plot(wavelength, flux, smooth_wavelength, smooth_flux)
 
 #format(new_wavelength, '.10f')
 #format(new_flux, '.10f')

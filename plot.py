@@ -1,31 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import os
-from astropy.io import fits
-import planckfunc
 
 
-path = "/home/slogle/Astro"
-os.chdir(path)
 
-fif = 'test1.fits'
+def plot(wavelength, flux, smooth_wavelength, smooth_flux):
+    plt.subplot(1,2,1)
+    plt.plot(wavelength, flux)
+    plt.title("Raw Wavelength vs Flux")
+    plt.xlabel("Wavelength (Ångstroms)")
+    plt.ylabel("Flux")
 
-hdul = fits.open(fif)
-hdul.info()
-data = fits.getdata(fif)
+    plt.subplot(1,2,2)
+    plt.plot(smooth_wavelength, smooth_flux)
+    plt.title("Normalized/Smoothed Wavelength vs Flux")
+    plt.xlabel("Wavelength (Ångstroms)")
+    plt.ylabel("Flux")
 
-
-star_wavelength = np.array(data[0][0])
-flux = np.array(data[0][1])
-
-planck_wavelength = np.arange(1e-9, 3e-6, 1e-9)
-intensity = []
-Length_wavelength=len(star_wavelength)
-#for i in range(0,Length_wavelength):
- #   dummy = planckfunc.planck(planck_wavelength[i],7000)
-  #  intensity =  np.append(intensity, [[dummy]] )
-intensity = planckfunc.planck(planck_wavelength,70000)
-
-plt.plot(star_wavelength,flux)
-plt.plot(planck_wavelength*1e9,intensity)
-plt.show()
+    plt.show()
