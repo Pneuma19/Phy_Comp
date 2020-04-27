@@ -6,7 +6,7 @@ from astropy.io import fits
 import numpy as np
 
 
-def smooth(wavelength, norm_flux):
+def smooth(wavelength, flux):
   smooth_flux = []
   smooth_wavelength = []
   r = int(input("Please enter a r value: "))
@@ -14,9 +14,9 @@ def smooth(wavelength, norm_flux):
   j = r
   k = r
 
-  while j < len(norm_flux) - r:
+  while j < len(flux) - r:
     dummy = 0
-    dummy = sum(norm_flux[(j-r):(j+r+1)])
+    dummy = sum(flux[(j-r):(j+r+1)])
     smooth_flux.append(alpha * dummy)
     j += 1
 
