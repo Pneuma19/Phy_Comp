@@ -22,7 +22,7 @@ def write_moog(smooth_wavelength, smooth_flux):
       number_of_variables = int(dummy)
     else:
       number_of_variables = -1
-    print("You have chosen an improper number. Please select a new number.\n")
+      print("You have chosen an improper number. Please select a new number.\n")
     
 
   with open(text_file, 'w') as f:
