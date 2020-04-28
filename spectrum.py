@@ -22,4 +22,4 @@ pt.plot(wavelength, flux, smooth_wavelength, smooth_flux)
 star_name, number_of_variables = wtm.write_moog(smooth_wavelength, smooth_flux)
 
 #Writing to a plain text file (with header)
-wt.write_txt(smooth_wavelength, smooth_flux, star_name, number_of_variables)
+wt.write_txt(smooth_wavelength, smooth_flux, star_name, number_of_variables, wavelength, flux)
